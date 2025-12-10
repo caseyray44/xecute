@@ -5,6 +5,7 @@ import { PhoneNumberTable } from "@/components/features/dashboard/PhoneNumberTab
 import { ActivityPanel } from "@/components/features/dashboard/ActivityPanel";
 import { OnboardingChecklist } from "@/components/features/dashboard/OnboardingChecklist";
 import { ConnectMarkateCard } from "@/components/features/dashboard/ConnectMarkateCard";
+import { PaymentModalsPreview } from "@/components/features/dashboard/PaymentModalsPreview";
 
 export const metadata: Metadata = {
     title: "Dashboard",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
     return (
         <DashboardLayout>
+            <PaymentModalsPreview />
             <div className="space-y-6 animate-fade-in">
                 {/* Header Section */}
                 <div className="flex flex-col gap-1">

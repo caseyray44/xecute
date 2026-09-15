@@ -220,13 +220,14 @@ const THREADS: { title: string; caption: string; lines: Line[] }[] = [
     ],
   },
   {
-    title: "Accepted online in fifteen minutes",
-    caption: "New estimate link sent 7:01 AM. Signed 7:16 AM. $2,146.",
+    title: "Lost the windows, kept the customer",
+    caption: "Another quote came in 30% lower. Sam didn’t argue. Her deck is on his calendar for spring.",
     lines: [
-      { who: "sam", text: "Hi Mike, this is Sam at Northline. The office wanted me to get you the new estimate. Same options you’ve been looking at, just the updated layout. Nothing changes on your end. Here’s the link.", time: "7:01 AM" },
-      { who: "them", text: "Oh boy that was much more easierer than the last estimate link you sent me. Should i be worried about the flow on your end of this software change?", time: "7:18 AM" },
-      { who: "sam", text: "Ha no worries at all Mike, nothing changes on our end. Same system, just cleaner for you to look at and accept when you’re ready. All the options are still there like before." },
-      { who: "sam", text: "Perfect, you’re all set Mike. The office will reach out shortly to get you scheduled. Appreciate you locking that in!" },
+      { who: "sam", text: "No rush at all on my end Pam, totally get it if things got busy. The deck washing came up when I was out there. That lichen’s rooted in pretty good, we can pull most of it but figured you’d want the honest read on what to expect. Anything you want me to run down on the deck work or the passes while you think it over?", time: "Tue 11:15 AM" },
+      { who: "them", text: "I just got another quote in for windows at 30percent less. I’ll take the lesser one but would like you to do my deck cleaning. I’ll wait til next early spring for that. Thank you.", time: "1:34 PM" },
+      { who: "sam", text: "Gotcha, appreciate the straight answer. Just so I’m clear. Are you saying you want to pass on the windows for now and circle back next spring for just the deck cleaning, or did you want to lock in the deck now for a spring visit?" },
+      { who: "them", text: "I’ll do it next spring. I put your name and number in my calendar" },
+      { who: "sam", text: "Perfect, no worries at all. Appreciate you considering us, anytime down the road just reach out. And hey, give Daisy a scratch from us." },
     ],
   },
   {

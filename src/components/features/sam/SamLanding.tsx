@@ -11,7 +11,7 @@ import {
 } from "lucide-react"
 
 export const LINKS = {
-  signup: "https://www.xecutetech.ai/signup",
+  signup: "https://sam.xecutetech.com/signup",
   login: "https://www.xecutetech.ai/login",
   pricing: "https://www.xecutetech.ai/pricing",
   features: "https://www.xecutetech.ai/features",
@@ -128,7 +128,7 @@ export function Hero() {
         <div className="motion-safe:animate-fade-in-up">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-200">
             <span className="h-2 w-2 rounded-full bg-amber-400" aria-hidden="true" />
-            For businesses on Markate or Jobber
+            For any home service business
           </p>
           <h1 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
             A sales rep who <span className={GRAD_TEXT}>texts your customers.</span>
@@ -185,8 +185,8 @@ export function Proof() {
 
 const STEPS = [
   {
-    title: "Connect your CRM",
-    body: "Markate or Jobber. Sam reads your customers and estimates the same way your office does. About ten minutes.",
+    title: "Connect Markate, or upload your list",
+    body: "On Markate, Sam reads your customers and estimates directly. On anything else, export your customers and invoices and drop the files in. Ten minutes either way.",
   },
   {
     title: "Teach Sam your business",
@@ -371,7 +371,7 @@ export function Pricing() {
             <a href={LINKS.signup} className="mt-auto inline-flex items-center justify-center pt-8">
               <span className={`${BTN_PRIMARY} h-11 w-full text-sm`}>Get Sam <ArrowRight className="h-4 w-4" /></span>
             </a>
-            <p className="mt-3 text-center text-xs text-slate-500">Needs a Markate or Jobber account.</p>
+            <p className="mt-3 text-center text-xs text-slate-500">Markate connects directly. Anything else, upload your customer list.</p>
           </div>
 
           <div className="flex flex-col rounded-2xl border border-dashed border-slate-700 bg-slate-900/40 p-7">
@@ -415,8 +415,8 @@ const FAQ = [
     a: "He stops, for good, and marks it in your CRM. He also never texts landlines, disconnected numbers, or anyone marked inactive.",
   },
   {
-    q: "Do I need Markate or Jobber?",
-    a: "Yes, for now. Sam reads your customers and writes accepted estimates straight into your CRM, so there’s nothing to re-type. A version for businesses without a CRM is on the list.",
+    q: "Do I need Markate?",
+    a: "No. On Markate, Sam connects directly and accepted estimates land in your account by themselves. On Housecall Pro, ServiceTitan, Jobber, QuickBooks or a spreadsheet, you export your customer list and Sam works from that. Estimates you hand him one link at a time, and he follows up until they sign.",
   },
   {
     q: "How does “free until he closes your first job” work?",

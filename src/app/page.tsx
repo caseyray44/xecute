@@ -7,7 +7,7 @@ export default function Home() {
     name: "Sam by Xecute",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, SMS",
-    description: "A sales rep who texts your customers. Brings back quiet customers, follows up on every estimate, and books the job into Markate or Jobber.",
+    description: "A sales rep who texts your customers. Brings back quiet customers, follows up on every estimate, and books the job.",
     offers: { "@type": "Offer", price: "297", priceCurrency: "USD", description: "Free until Sam closes your first job. Xecute included." },
   }
   return (

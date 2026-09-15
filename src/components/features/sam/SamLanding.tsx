@@ -11,7 +11,7 @@ import {
 } from "lucide-react"
 
 export const LINKS = {
-  signup: "https://sam.xecutetech.com/signup",
+  signup: "https://sam.xecutetech.ai/signup",
   login: "https://www.xecutetech.ai/login",
   pricing: "https://www.xecutetech.ai/pricing",
   features: "https://www.xecutetech.ai/features",

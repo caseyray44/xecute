@@ -11,7 +11,7 @@ export default function Home() {
     offers: { "@type": "Offer", price: "297", priceCurrency: "USD", description: "Free until Sam closes your first job. Xecute included." },
   }
   return (
-    <main className="min-h-screen bg-white dark:bg-slate-950">
+    <main className="min-h-screen bg-slate-950 text-slate-100">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Nav />
       <Hero />

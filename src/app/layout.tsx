@@ -16,19 +16,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Xecute – AI Text Automation for Service Businesses",
+    default: "Xecute – A sales rep who texts your customers",
     template: "%s | Xecute"
   },
-  description: "Manage your whole business using one text message. Automate scheduling, create work orders, and sync with Markate CRM instantly.",
-  keywords: ["AI text automation", "service business software", "Markate integration", "automated scheduling", "work order automation"],
+  description: "Sam brings back quiet customers, follows up on every estimate, and books the job into Markate or Jobber. Free until he closes your first job. Xecute included.",
+  keywords: ["Sam", "text follow-up for service businesses", "service business software", "Markate integration", "automated scheduling", "work order automation"],
   authors: [{ name: "Xecute Team" }],
   creator: "Xecute",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://xecutetech.ai",
-    title: "Xecute – AI Text Automation for Service Businesses",
-    description: "Manage your whole business using one text message. Automate scheduling, create work orders, and sync with Markate CRM instantly.",
+    title: "Xecute – A sales rep who texts your customers",
+    description: "Sam brings back quiet customers, follows up on every estimate, and books the job into Markate or Jobber. Free until he closes your first job. Xecute included.",
     siteName: "Xecute",
     images: [
       {
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Xecute – AI Text Automation for Service Businesses",
-    description: "Manage your whole business using one text message. Automate scheduling, create work orders, and sync with Markate CRM instantly.",
+    title: "Xecute – A sales rep who texts your customers",
+    description: "Sam brings back quiet customers, follows up on every estimate, and books the job into Markate or Jobber. Free until he closes your first job. Xecute included.",
     images: ["https://xecutetech.ai/twitter-image.jpg"], // Placeholder
   },
   robots: {

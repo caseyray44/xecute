@@ -7,6 +7,8 @@ import { OnboardingChecklist } from "@/components/features/dashboard/OnboardingC
 import { ConnectMarkateCard } from "@/components/features/dashboard/ConnectMarkateCard";
 import { PaymentModalsPreview } from "@/components/features/dashboard/PaymentModalsPreview";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
     title: "Dashboard",
     description: "Manage your account, phone numbers, and activity.",

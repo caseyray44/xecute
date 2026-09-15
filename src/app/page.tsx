@@ -1,55 +1,28 @@
-import { Hero } from "@/components/features/landing/Hero";
-import { Features } from "@/components/features/landing/Features";
-import { SocialProof } from "@/components/features/landing/SocialProof";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header"; // Reusing header for now, maybe simplified version for landing?
-// Actually, landing usually has a different header (Login/Sign up). 
-// I'll create a SimpleHeader for landing or just use inline navigation in Hero/Layout. 
-// For now I'll stick to a clean layout.
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Xecute",
-  "description": "AI Text Automation for Service Businesses",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD", // Update if pricing known
-    "availability": "https://schema.org/OnlineOnly"
-  },
-  "url": "https://xecutetech.ai",
-  "creator": {
-    "@type": "Organization",
-    "name": "Xecute"
-  },
-  "softwareVersion": "2.0.0"
-};
+import { Faq, FinalCall, Hero, HowItWorks, Nav, Pricing, Proof, SiteFooter, WhatSamDoes, XecuteSection } from "@/components/features/sam/SamLanding"
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Sam by Xecute",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, SMS",
+    description: "A sales rep who texts your customers. Brings back quiet customers, follows up on every estimate, and books the job into Markate or Jobber.",
+    offers: { "@type": "Offer", price: "297", priceCurrency: "USD", description: "Free until Sam closes your first job. Xecute included." },
+  }
   return (
-    <main className="flex min-h-screen flex-col">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      
-      {/* Simple Landing Header */}
-      <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-6">
-         <div className="font-bold text-2xl text-foreground">Xecute</div>
-         <nav className="hidden md:flex items-center gap-6 font-medium text-sm">
-            <a href="#" className="text-muted-foreground hover:text-foreground">Features</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">Pricing</a>
-            <a href="/login" className="text-primary hover:text-primary/80">Login</a>
-         </nav>
-      </header>
-
+    <main className="min-h-screen bg-white dark:bg-slate-950">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Nav />
       <Hero />
-      <Features />
-      <SocialProof />
-      <Footer />
+      <Proof />
+      <HowItWorks />
+      <WhatSamDoes />
+      <XecuteSection />
+      <Pricing />
+      <Faq />
+      <FinalCall />
+      <SiteFooter />
     </main>
-  );
+  )
 }

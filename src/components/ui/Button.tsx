@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"
 
 // Since I don't have radix-ui installed, I'll skip the Slot part for now or simulate it if needed, 

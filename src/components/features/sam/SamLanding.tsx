@@ -43,9 +43,9 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-white">
-          <img src="/xecute-mark.png" alt="" width={28} height={28} className="h-7 w-7 rounded-md" />
-          Xecute
+        <Link href="/" className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-white">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 to-teal-400 text-base font-extrabold text-slate-950" aria-hidden="true">S</span>
+          Sam <span className="ml-0.5 text-xs font-medium text-slate-500">by Xecute</span>
         </Link>
         <nav className="hidden items-center gap-7 text-sm text-slate-300 md:flex">
           <a href="#how" className="hover:text-white">How it works</a>
@@ -68,9 +68,18 @@ export function Nav() {
 
 /* ---------- Text thread (real conversations, names and streets changed) ---------- */
 
-type Line = { who: "sam" | "them"; text: string; time?: string }
+type Line = { who: "sam" | "them" | "note"; text: string; time?: string }
 
-function Bubble({ who, children, time }: { who: "sam" | "them"; children: React.ReactNode; time?: string }) {
+function Bubble({ who, children, time }: { who: "sam" | "them" | "note"; children: React.ReactNode; time?: string }) {
+  if (who === "note") {
+    return (
+      <div className="my-1 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-wide text-amber-300">
+        <span className="h-px flex-1 bg-slate-800" aria-hidden="true" />
+        <span>{children}</span>
+        <span className="h-px flex-1 bg-slate-800" aria-hidden="true" />
+      </div>
+    )
+  }
   const sam = who === "sam"
   return (
     <div className={`flex flex-col ${sam ? "items-start" : "items-end"}`}>
@@ -110,12 +119,15 @@ function Thread({ title, lines, footer }: { title: string; lines: Line[]; footer
 
 /* The hero thread: a regulars check-in. Sam sets his own callback. Real, name and street changed. */
 const HERO_THREAD: Line[] = [
+  { who: "note", text: "July 28" },
   { who: "sam", text: "Hey Robin! How dirty are those windows at your place down Lakeview Court?", time: "1:35 PM" },
   { who: "them", text: "Who is this?", time: "2:12 PM" },
-  { who: "sam", text: "It’s Sam at CC Inc. Asked cause it’s been about a year since we were out last. How are those windows holdin up?" },
+  { who: "sam", text: "It’s Sam at Northline. Asked cause it’s been about a year since we were out last. How are those windows holdin up?" },
   { who: "them", text: "Going to wait till October this year. Please check back 🙂", time: "4:37 PM" },
   { who: "sam", text: "Perfect, I’ll check in with you early October then. Enjoy the rest of summer!" },
   { who: "them", text: "👍" },
+  { who: "note", text: "October 1 · the follow-up Sam set for himself" },
+  { who: "sam", text: "Hey Robin, Sam at Northline. October’s here like you asked. Want me to get the crew out for those windows this month?", time: "9:02 AM" },
 ]
 
 function PhoneThread() {
@@ -124,12 +136,12 @@ function PhoneThread() {
       <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-emerald-500/25 via-teal-500/10 to-amber-400/15 blur-3xl" aria-hidden="true" />
       <div className="rounded-[2.25rem] border border-slate-700 bg-slate-900 p-3 shadow-2xl shadow-black/60">
         <Thread
-          title="Sam · CC Inc"
+          title="Sam · Northline Window Cleaning"
           lines={HERO_THREAD}
-          footer={<span className="flex items-start gap-2"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" /><span><span className="font-medium text-white">Sam, to himself:</span> follow up with Robin the first week of October. Nobody on the crew had to remember.</span></span>}
+          footer={<span className="flex items-start gap-2"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" /><span><span className="font-medium text-white">Sam set the October follow-up himself,</span> the day she asked. Nobody on the crew had to remember.</span></span>}
         />
       </div>
-      <p className="mt-3 text-center text-xs text-slate-500">A real conversation. Name and street changed.</p>
+      <p className="mt-3 text-center text-xs text-slate-500">A real conversation. Name, street and company changed.</p>
     </div>
   )
 }
@@ -211,7 +223,7 @@ const THREADS: { title: string; caption: string; lines: Line[] }[] = [
     title: "Accepted online in fifteen minutes",
     caption: "New estimate link sent 7:01 AM. Signed 7:16 AM. $2,146.",
     lines: [
-      { who: "sam", text: "Hi Mike, this is Sam at CC Inc. The office wanted me to get you the new estimate. Same options you’ve been looking at, just the updated layout. Nothing changes on your end. Here’s the link.", time: "7:01 AM" },
+      { who: "sam", text: "Hi Mike, this is Sam at Northline. The office wanted me to get you the new estimate. Same options you’ve been looking at, just the updated layout. Nothing changes on your end. Here’s the link.", time: "7:01 AM" },
       { who: "them", text: "Oh boy that was much more easierer than the last estimate link you sent me. Should i be worried about the flow on your end of this software change?", time: "7:18 AM" },
       { who: "sam", text: "Ha no worries at all Mike, nothing changes on our end. Same system, just cleaner for you to look at and accept when you’re ready. All the options are still there like before." },
       { who: "sam", text: "Perfect, you’re all set Mike. The office will reach out shortly to get you scheduled. Appreciate you locking that in!" },
@@ -223,7 +235,7 @@ const THREADS: { title: string; caption: string; lines: Line[] }[] = [
     lines: [
       { who: "sam", text: "Hey Kyle! How dirty are those windows at your place down Birch Lane?", time: "9:50 AM" },
       { who: "them", text: "Depends who’s asking haha", time: "10:56 AM" },
-      { who: "sam", text: "It’s Sam at CC Inc. Asked cause it’s been about a year since we were out last. Figured they might be getting grimy again by now, how’re they looking?" },
+      { who: "sam", text: "It’s Sam at Northline. Asked cause it’s been about a year since we were out last. Figured they might be getting grimy again by now, how’re they looking?" },
       { who: "them", text: "My wife actually tried her hand at cleaning them last month and hasn’t complained to me about them yet so I think we might be ok this year. Thanks for reaching out though Sam!" },
       { who: "sam", text: "Ha, respect to her for going after them herself! Totally understand. Mind if I check back with you guys next spring when they’re due again?" },
       { who: "them", text: "Perfectly fine by me!" },
@@ -247,7 +259,7 @@ export function Proof() {
 
         <div className="mt-14 max-w-2xl">
           <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Real conversations.</h2>
-          <p className="mt-3 text-lg text-slate-300">Pulled from one business’s phone. Customer names and streets changed, nothing else.</p>
+          <p className="mt-3 text-lg text-slate-300">Real texts from one business’s phone. Names, streets and the company changed, nothing else.</p>
         </div>
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {THREADS.map((t) => (
@@ -484,11 +496,11 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 font-semibold text-white">
-              <img src="/xecute-mark.png" alt="" width={24} height={24} className="h-6 w-6 rounded-md" />
-              Xecute
+            <Link href="/" className="flex items-center gap-2.5 text-lg font-bold text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-emerald-400 to-teal-400 text-sm font-extrabold text-slate-950" aria-hidden="true">S</span>
+              Sam
             </Link>
-            <p className="mt-3 max-w-xs text-sm text-slate-400">Sam is a sales rep who texts your customers. Built by Xecute.</p>
+            <p className="mt-3 max-w-xs text-sm text-slate-400">A sales rep who texts your customers. Made by Xecute.</p>
           </div>
           <div>
             <h4 className="text-sm font-semibold text-white">Sam</h4>

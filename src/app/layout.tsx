@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
+// Inter, the same face the Sam app uses on its login and dashboard (Casey, Sep 15: "something's up
+// with the font"). Keeps the --font-geist-sans variable name so globals.css needs no change.
+const geistSans = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap", // fast font loading
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     default: "Xecute – A sales rep who texts your customers",
     template: "%s | Xecute"
   },
-  description: "Sam brings back quiet customers, follows up on every estimate, and books the job. Free until he closes your first job. Xecute included.",
+  description: "Sam brings back quiet customers, follows up on every estimate, and books the job. $297 a month, no contract.",
   keywords: ["Sam", "text follow-up for service businesses", "service business software", "Markate integration", "automated scheduling", "work order automation"],
   authors: [{ name: "Xecute Team" }],
   creator: "Xecute",
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://xecutetech.ai",
     title: "Xecute – A sales rep who texts your customers",
-    description: "Sam brings back quiet customers, follows up on every estimate, and books the job. Free until he closes your first job. Xecute included.",
+    description: "Sam brings back quiet customers, follows up on every estimate, and books the job. $297 a month, no contract.",
     siteName: "Xecute",
     images: [
       {
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Xecute – A sales rep who texts your customers",
-    description: "Sam brings back quiet customers, follows up on every estimate, and books the job. Free until he closes your first job. Xecute included.",
+    description: "Sam brings back quiet customers, follows up on every estimate, and books the job. $297 a month, no contract.",
     images: ["https://xecutetech.ai/twitter-image.jpg"], // Placeholder
   },
   robots: {

@@ -1,4 +1,4 @@
-import { Faq, FinalCall, Hero, HowItWorks, Nav, Pricing, Proof, SiteFooter, WhatSamDoes, XecuteSection } from "@/components/features/sam/SamLanding"
+import { Faq, FinalCall, Hero, HowItWorks, Nav, Pricing, Proof, SiteFooter, Vsl, WhatSamDoes } from "@/components/features/sam/SamLanding"
 
 export default function Home() {
   const jsonLd = {
@@ -7,18 +7,18 @@ export default function Home() {
     name: "Sam by Xecute",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, SMS",
-    description: "A sales rep who texts your customers. Brings back quiet customers, follows up on every estimate, and books the job.",
-    offers: { "@type": "Offer", price: "297", priceCurrency: "USD", description: "Free until Sam closes your first job. Xecute included." },
+    description: "A sales rep who texts your customers. Brings back quiet customers, follows up on every estimate, and gets the yes.",
+    offers: { "@type": "Offer", price: "297", priceCurrency: "USD", description: "$297 a month. No contract. Cancel any time." },
   }
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Nav />
       <Hero />
+      <Vsl />
       <Proof />
       <HowItWorks />
       <WhatSamDoes />
-      <XecuteSection />
       <Pricing />
       <Faq />
       <FinalCall />

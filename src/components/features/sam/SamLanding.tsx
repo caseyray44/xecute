@@ -12,9 +12,7 @@ import {
 
 export const LINKS = {
   signup: "https://sam.xecutetech.ai/signup",
-  login: "https://www.xecutetech.ai/login",
-  pricing: "https://www.xecutetech.ai/pricing",
-  features: "https://www.xecutetech.ai/features",
+  login: "https://sam.xecutetech.ai/login",
   demo: "https://calendly.com/xecutetech-support/ops-crm-strategy-call",
   support: "mailto:support@xecutetech.com",
   assistantSms: "sms:+19498286231",
@@ -22,12 +20,15 @@ export const LINKS = {
   privacy: "https://www.xecutetech.ai/Privacy%20Policy%20-%20Xecute.pdf",
 }
 
-const OFFER = "Free until he closes your first job. Then $297 a month, Xecute included."
+/** Paste the VSL embed URL here (YouTube "embed" link, Vimeo player link, or Loom embed). Empty = section hidden. */
+export const VSL_URL = ""
+
+const PRICE_LINE = "$297 a month. No contract. Cancel any time."
 
 /*
   Palette (matches the live xecutetech site): slate-950 ground, slate-900 panels,
   white headings, slate-300 body, emerald-to-teal gradient for the brand accent,
-  amber-400 as the one fresh spark (numbers, the pick badge, the eyebrow dot).
+  amber-400 as the one fresh spark (numbers, the badge, the eyebrow dot).
 */
 const BTN_PRIMARY =
   "inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-400 to-teal-400 font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 hover:from-emerald-300 hover:to-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
@@ -65,7 +66,9 @@ export function Nav() {
   )
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Text thread (real conversations, names and streets changed) ---------- */
+
+type Line = { who: "sam" | "them"; text: string; time?: string }
 
 function Bubble({ who, children, time }: { who: "sam" | "them"; children: React.ReactNode; time?: string }) {
   const sam = who === "sam"
@@ -74,8 +77,8 @@ function Bubble({ who, children, time }: { who: "sam" | "them"; children: React.
       <div
         className={
           sam
-            ? "max-w-[85%] rounded-2xl rounded-bl-md bg-slate-800 px-3.5 py-2.5 text-[15px] leading-snug text-slate-100"
-            : "max-w-[85%] rounded-2xl rounded-br-md bg-gradient-to-r from-emerald-500 to-teal-500 px-3.5 py-2.5 text-[15px] font-medium leading-snug text-slate-950"
+            ? "max-w-[88%] rounded-2xl rounded-bl-md bg-slate-800 px-3.5 py-2.5 text-[15px] leading-snug text-slate-100"
+            : "max-w-[88%] rounded-2xl rounded-br-md bg-gradient-to-r from-emerald-500 to-teal-500 px-3.5 py-2.5 text-[15px] font-medium leading-snug text-slate-950"
         }
       >
         {children}
@@ -85,40 +88,53 @@ function Bubble({ who, children, time }: { who: "sam" | "them"; children: React.
   )
 }
 
+function Thread({ title, lines, footer }: { title: string; lines: Line[]; footer?: React.ReactNode }) {
+  return (
+    <div className="overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950">
+      <div className="flex items-center gap-3 border-b border-slate-800 px-4 py-3">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 text-sm font-bold text-slate-950">S</div>
+        <div className="leading-tight">
+          <div className="text-sm font-semibold text-white">{title}</div>
+          <div className="text-xs text-slate-500">Text message</div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2.5 px-3.5 py-4">
+        {lines.map((l, i) => (
+          <Bubble key={i} who={l.who} time={l.time}>{l.text}</Bubble>
+        ))}
+      </div>
+      {footer ? <div className="border-t border-slate-800 bg-slate-900 px-4 py-3 text-xs text-slate-300">{footer}</div> : null}
+    </div>
+  )
+}
+
+/* The hero thread: a regulars check-in. Sam sets his own callback. Real, name and street changed. */
+const HERO_THREAD: Line[] = [
+  { who: "sam", text: "Hey Robin! How dirty are those windows at your place down Lakeview Court?", time: "1:35 PM" },
+  { who: "them", text: "Who is this?", time: "2:12 PM" },
+  { who: "sam", text: "It’s Sam at CC Inc. Asked cause it’s been about a year since we were out last. How are those windows holdin up?" },
+  { who: "them", text: "Going to wait till October this year. Please check back 🙂", time: "4:37 PM" },
+  { who: "sam", text: "Perfect, I’ll check in with you early October then. Enjoy the rest of summer!" },
+  { who: "them", text: "👍" },
+]
+
 function PhoneThread() {
   return (
     <div className="relative mx-auto w-full max-w-[380px]">
       <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-emerald-500/25 via-teal-500/10 to-amber-400/15 blur-3xl" aria-hidden="true" />
       <div className="rounded-[2.25rem] border border-slate-700 bg-slate-900 p-3 shadow-2xl shadow-black/60">
-        <div className="overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950">
-          <div className="flex items-center gap-3 border-b border-slate-800 px-4 py-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 text-sm font-bold text-slate-950">S</div>
-            <div className="leading-tight">
-              <div className="text-sm font-semibold text-white">Sam · Northline Window Cleaning</div>
-              <div className="text-xs text-slate-500">Text message</div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-2.5 px-3.5 py-4">
-            <Bubble who="sam" time="9:14 AM">
-              Hi Dana, it’s Sam with Northline Window Cleaning. We did your windows back in May. Want the same crew out before the holidays? I can hold Tuesday the 3rd.
-            </Bubble>
-            <Bubble who="them" time="9:41 AM">Yes please. Can you do the gutters too?</Bubble>
-            <Bubble who="sam">Can do. Windows and gutters together is $340. Same Tuesday, morning slot?</Bubble>
-            <Bubble who="them">Perfect.</Bubble>
-            <Bubble who="sam" time="9:43 AM">Booked. The office will send your confirmation in a minute. Thanks Dana.</Bubble>
-          </div>
-          <div className="border-t border-slate-800 bg-slate-900 px-4 py-3">
-            <div className="flex items-start gap-2 text-xs text-slate-300">
-              <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" />
-              <span><span className="font-medium text-white">To the office:</span> Dana Reyes booked windows + gutters, Tue Nov 3, $340. Estimate accepted in Markate.</span>
-            </div>
-          </div>
-        </div>
+        <Thread
+          title="Sam · CC Inc"
+          lines={HERO_THREAD}
+          footer={<span className="flex items-start gap-2"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" /><span><span className="font-medium text-white">Sam, to himself:</span> follow up with Robin the first week of October. Nobody on the crew had to remember.</span></span>}
+        />
       </div>
-      <p className="mt-3 text-center text-xs text-slate-500">Example conversation. Sam only quotes prices and services you taught him.</p>
+      <p className="mt-3 text-center text-xs text-slate-500">A real conversation. Name and street changed.</p>
     </div>
   )
 }
+
+/* ---------- Hero ---------- */
 
 export function Hero() {
   return (
@@ -134,7 +150,7 @@ export function Hero() {
             A sales rep who <span className={GRAD_TEXT}>texts your customers.</span>
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
-            Sam works your customer list, brings back the ones who went quiet, follows up on every estimate, and books the job. You approve. He does the rest.
+            <span className="font-semibold text-white">Your customer list is sitting there.</span> Sam texts the ones who went quiet, follows up on every estimate you send, and gets the yes. He sets his own follow-ups. You read every word.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a href={LINKS.signup} className={`${BTN_PRIMARY} h-12 px-6 text-base`}>
@@ -144,8 +160,8 @@ export function Hero() {
               Book a 15-minute walkthrough
             </a>
           </div>
-          <p className="mt-5 text-sm font-medium text-amber-300">{OFFER}</p>
-          <p className="mt-1 text-sm text-slate-400">Cancel any time and keep every customer he found.</p>
+          <p className="mt-5 text-sm font-medium text-amber-300">{PRICE_LINE}</p>
+          <p className="mt-1 text-sm text-slate-400">Works with Markate, or with a customer list from anything else.</p>
         </div>
         <div className="motion-safe:animate-fade-in">
           <PhoneThread />
@@ -155,18 +171,70 @@ export function Hero() {
   )
 }
 
-/* ---------- Proof ---------- */
+/* ---------- VSL ---------- */
+
+export function Vsl() {
+  if (!VSL_URL) return null
+  return (
+    <section className="mx-auto max-w-4xl px-4 pb-16 sm:px-6">
+      <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl shadow-black/50">
+        <div className="aspect-video w-full">
+          <iframe src={VSL_URL} title="How Sam works" className="h-full w-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+        </div>
+      </div>
+      <p className="mt-3 text-center text-sm text-slate-400">Two minutes. What Sam does, what you do, what it costs.</p>
+    </section>
+  )
+}
+
+/* ---------- Proof: numbers + real conversations ---------- */
 
 const STATS = [
-  { value: "49%", label: "of customers Sam texted wrote back" },
-  { value: "$150,000", label: "booked from customers who had gone quiet" },
+  { value: "71%", label: "of the customers Sam texted wrote back" },
+  { value: "$150,000", label: "closed in one month for one business" },
   { value: "294", label: "people reached in the first season" },
+]
+
+const THREADS: { title: string; caption: string; lines: Line[] }[] = [
+  {
+    title: "The estimate nobody answered",
+    caption: "Sent Tuesday. Sam checked in the next Monday. Closed at $1,298.",
+    lines: [
+      { who: "sam", text: "Hope the week’s going smooth. Just wanted to make sure you’re all set on the staining plan we put together. Happy to answer anything on the front door, the deck work, or those railings. You don’t owe me a reason either way, just didn’t want you stuck wondering about something I could knock out now.", time: "Mon 12:00 PM" },
+      { who: "them", text: "Hey Sam. Everything is going well. I think I will get some of the project signed off by tomorrow. I’ll keep you posted. Sorry for the delay in getting back to you.", time: "7:41 PM" },
+      { who: "sam", text: "No worries at all! Glad it’s moving. Just to confirm. You thinking the whole thing (front door, front deck, back deck rails) or starting with part of it?" },
+      { who: "them", text: "It will more than likely be the front deck and door." },
+      { who: "sam", text: "Perfect, the front deck and door is $1,298 all in. When you’re ready to lock it in, open the link, check the box next to Front Deck and Front Door, and hit Accept & Sign at the top. Takes a few seconds and you’re booked." },
+    ],
+  },
+  {
+    title: "Accepted online in fifteen minutes",
+    caption: "New estimate link sent 7:01 AM. Signed 7:16 AM. $2,146.",
+    lines: [
+      { who: "sam", text: "Hi Mike, this is Sam at CC Inc. The office wanted me to get you the new estimate. Same options you’ve been looking at, just the updated layout. Nothing changes on your end. Here’s the link.", time: "7:01 AM" },
+      { who: "them", text: "Oh boy that was much more easierer than the last estimate link you sent me. Should i be worried about the flow on your end of this software change?", time: "7:18 AM" },
+      { who: "sam", text: "Ha no worries at all Mike, nothing changes on our end. Same system, just cleaner for you to look at and accept when you’re ready. All the options are still there like before." },
+      { who: "sam", text: "Perfect, you’re all set Mike. The office will reach out shortly to get you scheduled. Appreciate you locking that in!" },
+    ],
+  },
+  {
+    title: "Knows when to stop",
+    caption: "No sale today. A customer who likes us and a check-in next spring.",
+    lines: [
+      { who: "sam", text: "Hey Kyle! How dirty are those windows at your place down Birch Lane?", time: "9:50 AM" },
+      { who: "them", text: "Depends who’s asking haha", time: "10:56 AM" },
+      { who: "sam", text: "It’s Sam at CC Inc. Asked cause it’s been about a year since we were out last. Figured they might be getting grimy again by now, how’re they looking?" },
+      { who: "them", text: "My wife actually tried her hand at cleaning them last month and hasn’t complained to me about them yet so I think we might be ok this year. Thanks for reaching out though Sam!" },
+      { who: "sam", text: "Ha, respect to her for going after them herself! Totally understand. Mind if I check back with you guys next spring when they’re due again?" },
+      { who: "them", text: "Perfectly fine by me!" },
+    ],
+  },
 ]
 
 export function Proof() {
   return (
     <section id="proof" className="border-y border-slate-800 bg-slate-900/50">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-8 sm:grid-cols-3">
           {STATS.map((s) => (
             <div key={s.value} className="text-center sm:text-left">
@@ -175,7 +243,20 @@ export function Proof() {
             </div>
           ))}
         </div>
-        <p className="mt-8 text-xs text-slate-500">From the first window-cleaning business running Sam, one season, one customer list. Your numbers depend on your list.</p>
+        <p className="mt-6 text-xs text-slate-500">From the first business running Sam. Your numbers depend on your list.</p>
+
+        <div className="mt-14 max-w-2xl">
+          <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Real conversations.</h2>
+          <p className="mt-3 text-lg text-slate-300">Pulled from one business’s phone. Customer names and streets changed, nothing else.</p>
+        </div>
+        <div className="mt-8 grid gap-6 lg:grid-cols-3">
+          {THREADS.map((t) => (
+            <div key={t.title}>
+              <Thread title={t.title} lines={t.lines} />
+              <p className="mt-3 px-1 text-sm text-slate-400"><span className="text-amber-300">{t.caption.split(".")[0]}.</span>{t.caption.slice(t.caption.indexOf(".") + 1)}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -185,20 +266,16 @@ export function Proof() {
 
 const STEPS = [
   {
-    title: "Connect Markate, or upload your list",
-    body: "On Markate, Sam reads your customers and estimates directly. On anything else, export your customers and invoices and drop the files in. Ten minutes either way.",
-  },
-  {
     title: "Teach Sam your business",
     body: "Your services, your prices, how you talk to people. He never makes anything up. If he doesn’t know, he asks you.",
   },
   {
-    title: "Sam texts. You approve.",
-    body: "Quiet customers, unanswered estimates, the seasonal push. Every morning you see who he wants to reach. One tap and he goes.",
+    title: "Sam texts. He sets his own follow-ups.",
+    body: "Quiet customers, unanswered estimates, the seasonal push. Sam decides who, when, and what to say, and books his own callbacks. You read every conversation and jump in whenever you want.",
   },
   {
-    title: "Jobs land in your CRM",
-    body: "Estimates get accepted, work orders get created, your reps keep their commission. The office gets a text when something books.",
+    title: "The yes lands in your lap",
+    body: "When a customer says yes, Sam texts you and the office: who, what, how much. On Markate the estimate gets accepted for you. Anywhere else, you book it in your own system.",
   },
 ]
 
@@ -207,16 +284,34 @@ export function HowItWorks() {
     <section id="how" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
       <div className="max-w-2xl">
         <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">How it works</h2>
-        <p className="mt-3 text-lg text-slate-300">Four steps. The first two take an afternoon. The last two run every day.</p>
+        <p className="mt-3 text-lg text-slate-300">One afternoon to set up. Then Sam runs every day.</p>
       </div>
-      <ol className="mt-12 grid gap-6 md:grid-cols-2">
+
+      <div className="mt-10">
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 text-base font-bold text-slate-950 tabular-nums">1</div>
+          <h3 className="text-2xl font-bold text-white">Give Sam your customers</h3>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className={`${CARD} p-7`}>
+            <div className="text-xs font-semibold uppercase tracking-wide text-teal-300">On Markate?</div>
+            <div className="mt-2 text-2xl font-bold text-white">Connect it.</div>
+            <p className="mt-2 leading-relaxed text-slate-300">Sam reads your customers and estimates straight from Markate. Accepted estimates land back in Markate by themselves.</p>
+          </div>
+          <div className={`${CARD} p-7`}>
+            <div className="text-xs font-semibold uppercase tracking-wide text-amber-300">Not on Markate?</div>
+            <div className="mt-2 text-2xl font-bold text-white">Upload your list.</div>
+            <p className="mt-2 leading-relaxed text-slate-300">Export customers, invoices and open estimates from whatever you run today. Housecall Pro, ServiceTitan, Jobber, QuickBooks, a spreadsheet. Drop the files in. Sam reads the columns himself.</p>
+          </div>
+        </div>
+      </div>
+
+      <ol className="mt-6 grid gap-4 md:grid-cols-3">
         {STEPS.map((s, i) => (
-          <li key={s.title} className={`${CARD} flex gap-5 p-6`}>
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 text-base font-bold text-slate-950 tabular-nums">{i + 1}</div>
-            <div>
-              <h3 className="text-lg font-semibold text-white">{s.title}</h3>
-              <p className="mt-1.5 leading-relaxed text-slate-300">{s.body}</p>
-            </div>
+          <li key={s.title} className={`${CARD} p-7`}>
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 text-base font-bold text-slate-950 tabular-nums">{i + 2}</div>
+            <h3 className="mt-4 text-xl font-bold text-white">{s.title}</h3>
+            <p className="mt-2 leading-relaxed text-slate-300">{s.body}</p>
           </li>
         ))}
       </ol>
@@ -228,10 +323,10 @@ export function HowItWorks() {
 
 const JOBS = [
   { icon: Moon, title: "Brings back quiet customers", body: "Everyone who used you once and never came back. Sam picks the right ones, at the right time of year, and texts them like he remembers them." },
-  { icon: ClipboardList, title: "Follows up on every estimate", body: "Sent an estimate and heard nothing? Sam follows up on a schedule you set, answers questions, and gets the yes." },
-  { icon: MessageSquareText, title: "Books from a text", body: "The customer says yes, picks what they want, and it’s accepted in your CRM. No link chasing, no phone tag." },
+  { icon: ClipboardList, title: "Follows up on every estimate", body: "Sent an estimate and heard nothing? Sam follows up, answers questions, and gets the yes." },
+  { icon: MessageSquareText, title: "Books from a text", body: "The customer says yes, picks what they want, and it’s done. No link chasing, no phone tag." },
+  { icon: Users, title: "Works with your team", body: "Your reps text Sam like a coworker. “Who’s on the Reyes job?” He answers, or gets the right person." },
   { icon: PhoneOff, title: "Knows when to stop", body: "Never texts a landline, a dead number, or anyone who said no. One reply of “stop” and he stops for good." },
-  { icon: Users, title: "Works with your team", body: "Your reps text Sam like a coworker. “Who’s on the Reyes job?” “Push Tuesday to Thursday.” He answers, or gets the right person." },
   { icon: Sunrise, title: "Reports every morning", body: "People texted, who replied, what booked, what needs a human. One short message, before your coffee." },
 ]
 
@@ -259,141 +354,51 @@ export function WhatSamDoes() {
   )
 }
 
-/* ---------- Xecute ---------- */
-
-const XECUTE_FEATURES = [
-  "Create tasks, expenses, and invoices from a text",
-  "Manage customers and leads without opening a laptop",
-  "A smart assistant on your phone that knows your business",
-  "Syncs with Markate or Jobber, so nothing gets typed twice",
-]
-
-const XECUTE_DAY: [string, string][] = [
-  ["7:05 AM", "“Add a $62 fuel expense for truck 2.” Done."],
-  ["9:30 AM", "“New lead: Mark Pruitt, 612-555-0148, gutters.” Lead created in Markate."],
-  ["11:10 AM", "“Invoice the Reyes job.” Invoice sent from the cab."],
-  ["4:45 PM", "Sam: “Two estimates accepted today. Three people asked for a call back. Names in your dashboard.”"],
-]
-
-export function XecuteSection() {
-  return (
-    <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-      <div className="grid items-center gap-12 lg:grid-cols-2">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-teal-300">Included with Sam</p>
-          <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Sam comes with <span className={GRAD_TEXT}>Xecute.</span>
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-slate-300">
-            Xecute runs your whole business from one text message. Sam is the salesperson inside it. Every Sam plan includes the full Xecute Pro account.
-          </p>
-          <ul className="mt-6 space-y-3">
-            {XECUTE_FEATURES.map((f) => (
-              <li key={f} className="flex items-start gap-3 text-slate-200">
-                <Check className="mt-1 h-4 w-4 shrink-0 text-teal-300" />
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-          <a href={LINKS.features} className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-400 hover:text-emerald-300">
-            See everything Xecute does <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
-        <div className={`${CARD} p-6`}>
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-400">A Tuesday with Xecute</div>
-          <dl className="mt-4 divide-y divide-slate-800">
-            {XECUTE_DAY.map(([t, body]) => (
-              <div key={t} className="flex gap-4 py-3">
-                <dt className="w-20 shrink-0 text-sm tabular-nums text-amber-300">{t}</dt>
-                <dd className="text-sm text-slate-200">{body}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 /* ---------- Pricing ---------- */
 
-const XECUTE_PLAN = ["Tasks, expenses, invoices by text", "Customers and leads", "Markate or Jobber sync", "Extra phone lines $10 each", "10-day free trial"]
 const SAM_PLAN = [
-  "Everything in Xecute Pro, included",
   "Brings back quiet customers",
   "Follows up on every estimate",
-  "Books straight into your CRM",
+  "Books straight from the text",
+  "Your whole team can text him",
   "Morning report, every day",
-  "Cancel any time. Keep every customer he found.",
+  "No contract. Cancel any time.",
 ]
-const PHONE_PLAN = ["Answers missed calls", "Books from the call", "Same voice, same manners"]
 
 export function Pricing() {
   return (
-    <section id="pricing" className="border-y border-slate-800 bg-slate-900/50">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="max-w-2xl">
-          <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Pricing</h2>
-          <p className="mt-3 text-lg text-slate-300">Sam doesn’t cost anything until he’s paid for himself.</p>
+    <section id="pricing" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <div className="max-w-2xl">
+        <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Pricing</h2>
+        <p className="mt-3 text-lg text-slate-300">One number. Less than one job a month, for most businesses.</p>
+      </div>
+      <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="relative flex flex-col rounded-2xl border border-emerald-400/60 bg-slate-900 p-8 shadow-2xl shadow-emerald-500/15 ring-1 ring-emerald-400/30">
+          <div className={`text-sm font-semibold ${GRAD_TEXT}`}>Sam</div>
+          <div className="mt-3 flex items-baseline gap-2">
+            <span className="text-5xl font-bold tracking-tight text-white tabular-nums">$297</span>
+            <span className="text-base text-slate-400">a month</span>
+          </div>
+          <p className="mt-3 text-sm font-medium text-amber-300">Markate connected, or your own customer list. Same Sam, same price.</p>
+          <ul className="mt-6 grid gap-2.5 text-sm text-slate-100 sm:grid-cols-2">
+            {SAM_PLAN.map((f) => (
+              <li key={f} className="flex gap-2.5"><Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />{f}</li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href={LINKS.signup} className={`${BTN_PRIMARY} h-12 px-6 text-base`}>Get Sam <ArrowRight className="h-4 w-4" /></a>
+            <a href={LINKS.demo} className={`${BTN_GHOST} h-12 px-6 text-base`}>Book a walkthrough</a>
+          </div>
+          <p className="mt-4 text-xs text-slate-500">Invite-only for now. We bring on a few businesses at a time so every Sam is taught right.</p>
         </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          <div className={`${CARD} flex flex-col p-7`}>
-            <div className="text-sm font-semibold text-slate-400">Xecute Pro</div>
-            <div className="mt-3 flex items-baseline gap-1">
-              <span className="text-4xl font-bold tracking-tight text-white tabular-nums">$99</span>
-              <span className="text-sm text-slate-400">every 4 weeks</span>
-            </div>
-            <p className="mt-3 text-sm text-slate-300">Run the business by text. Unlimited messages.</p>
-            <ul className="mt-6 space-y-2.5 text-sm text-slate-200">
-              {XECUTE_PLAN.map((f) => (
-                <li key={f} className="flex gap-2.5"><Check className="mt-0.5 h-4 w-4 shrink-0 text-slate-500" />{f}</li>
-              ))}
-            </ul>
-            <a href={LINKS.pricing} className="mt-auto inline-flex items-center justify-center pt-8">
-              <span className={`${BTN_GHOST} h-11 w-full text-sm font-semibold`}>See Xecute plans</span>
-            </a>
-          </div>
-
-          <div className="relative flex flex-col rounded-2xl border border-emerald-400/60 bg-slate-900 p-7 shadow-2xl shadow-emerald-500/15 ring-1 ring-emerald-400/30">
-            <div className="absolute -top-3 left-6 rounded-full bg-amber-400 px-3 py-0.5 text-xs font-bold text-slate-950">Most businesses pick this</div>
-            <div className={`text-sm font-semibold ${GRAD_TEXT}`}>Sam</div>
-            <div className="mt-3 flex items-baseline gap-1">
-              <span className="text-4xl font-bold tracking-tight text-white tabular-nums">$297</span>
-              <span className="text-sm text-slate-400">a month</span>
-            </div>
-            <p className="mt-3 text-sm font-medium text-amber-300">Free until he closes your first job.</p>
-            <ul className="mt-6 space-y-2.5 text-sm text-slate-100">
-              {SAM_PLAN.map((f) => (
-                <li key={f} className="flex gap-2.5"><Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />{f}</li>
-              ))}
-            </ul>
-            <a href={LINKS.signup} className="mt-auto inline-flex items-center justify-center pt-8">
-              <span className={`${BTN_PRIMARY} h-11 w-full text-sm`}>Get Sam <ArrowRight className="h-4 w-4" /></span>
-            </a>
-            <p className="mt-3 text-center text-xs text-slate-500">Markate connects directly. Anything else, upload your customer list.</p>
-          </div>
-
-          <div className="flex flex-col rounded-2xl border border-dashed border-slate-700 bg-slate-900/40 p-7">
-            <div className="text-sm font-semibold text-slate-400">Sam on the phone</div>
-            <div className="mt-3 flex items-baseline gap-1">
-              <span className="text-4xl font-bold tracking-tight text-slate-500">Soon</span>
-            </div>
-            <p className="mt-3 text-sm text-slate-300">Sam answers the line when you can’t. Books the job, takes the message, texts you the summary.</p>
-            <ul className="mt-6 space-y-2.5 text-sm text-slate-300">
-              {PHONE_PLAN.map((f) => (
-                <li key={f} className="flex gap-2.5"><Check className="mt-0.5 h-4 w-4 shrink-0 text-slate-600" />{f}</li>
-              ))}
-            </ul>
-            <a href={LINKS.support + "?subject=Sam%20on%20the%20phone"} className="mt-auto inline-flex items-center justify-center pt-8">
-              <span className={`${BTN_GHOST} h-11 w-full text-sm font-semibold`}>Tell me when it’s ready</span>
-            </a>
-          </div>
+        <div className="flex flex-col rounded-2xl border border-dashed border-slate-700 bg-slate-900/40 p-8">
+          <div className="text-sm font-semibold text-slate-400">Sam on the phone</div>
+          <div className="mt-3 text-4xl font-bold tracking-tight text-slate-500">Soon</div>
+          <p className="mt-3 text-sm text-slate-300">Sam answers the line when you can’t. Takes the message, gets the yes, texts you the summary. Same voice, same manners.</p>
+          <a href={LINKS.support + "?subject=Sam%20on%20the%20phone"} className="mt-auto inline-flex items-center justify-center pt-8">
+            <span className={`${BTN_GHOST} h-11 w-full text-sm font-semibold`}>Tell me when it’s ready</span>
+          </a>
         </div>
-
-        <p className="mt-8 max-w-2xl text-sm text-slate-400">
-          “First job” means the first estimate Sam gets accepted or job he books for you. We check it against your CRM, you see it in your morning report, and billing starts at your next renewal. Sam is invite-only right now while we bring on a few businesses at a time.
-        </p>
       </div>
     </section>
   )
@@ -404,44 +409,46 @@ export function Pricing() {
 const FAQ = [
   {
     q: "Does Sam sound like a robot?",
-    a: "No. He texts the way your best office person would: short, friendly, first names, no scripts. Customers reply to him like a person because he reads like one. You can read every conversation.",
+    a: "No. Read the conversations above. Short, friendly, first names, no scripts. Customers reply to him like a person because he reads like one. You can read every conversation.",
   },
   {
     q: "Will he ever quote a price or promise something wrong?",
     a: "He only uses the services, prices, and rules you taught him. If a customer asks something he wasn’t taught, he says he’ll check and hands it to you. He does not make things up.",
   },
   {
-    q: "What if a customer says stop?",
-    a: "He stops, for good, and marks it in your CRM. He also never texts landlines, disconnected numbers, or anyone marked inactive.",
-  },
-  {
     q: "Do I need Markate?",
-    a: "No. On Markate, Sam connects directly and accepted estimates land in your account by themselves. On Housecall Pro, ServiceTitan, Jobber, QuickBooks or a spreadsheet, you export your customer list and Sam works from that. Estimates you hand him one link at a time, and he follows up until they sign.",
+    a: "No. On Markate, Sam connects directly and accepted estimates land in your account by themselves. On Housecall Pro, ServiceTitan, Jobber, QuickBooks or a spreadsheet, you export your customer list and Sam works from that. New estimates you hand him one link at a time, and he follows up until they sign.",
   },
   {
-    q: "How does “free until he closes your first job” work?",
-    a: "You pay nothing while Sam gets set up and starts texting. The first time an estimate he worked gets accepted, or a job he booked lands in your CRM, the $297 a month starts at your next renewal. If he never closes anything, you never pay.",
+    q: "Does Sam schedule jobs?",
+    a: "No. He gets the yes and hands it to you or your office with who, what, and how much. Scheduling stays in your hands and in your system. What he schedules is himself: every callback, every follow-up, on his own.",
+  },
+  {
+    q: "What if a customer says stop?",
+    a: "He stops, for good. He also never texts landlines, disconnected numbers, or anyone you’ve marked inactive.",
   },
   {
     q: "Can my crew use it too?",
-    a: "Yes. Your reps text Sam from their own phones, ask about jobs, move appointments, and get pulled in when a customer asks for a human. Commission on accepted estimates stays with the rep who sent them.",
+    a: "Yes. Your reps text Sam from their own phones, ask about jobs, and get pulled in when a customer asks for a human. Commission on accepted estimates stays with the rep who sent them.",
   },
 ]
 
 export function Faq() {
   return (
-    <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-      <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Questions people ask first</h2>
-      <div className="mt-10 divide-y divide-slate-800 border-y border-slate-800">
-        {FAQ.map((item) => (
-          <details key={item.q} className="group py-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded text-left text-lg font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
-              {item.q}
-              <span className="shrink-0 text-emerald-400 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-            </summary>
-            <p className="mt-3 max-w-prose leading-relaxed text-slate-300">{item.a}</p>
-          </details>
-        ))}
+    <section id="faq" className="border-t border-slate-800 bg-slate-900/50">
+      <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
+        <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Questions people ask first</h2>
+        <div className="mt-10 divide-y divide-slate-800 border-y border-slate-800">
+          {FAQ.map((item) => (
+            <details key={item.q} className="group py-5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded text-left text-lg font-medium text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+                {item.q}
+                <span className="shrink-0 text-emerald-400 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p className="mt-3 max-w-prose leading-relaxed text-slate-300">{item.a}</p>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -451,11 +458,11 @@ export function Faq() {
 
 export function FinalCall() {
   return (
-    <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+    <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
       <div className="relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-slate-900 px-6 py-14 text-center sm:px-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.18),transparent_65%)]" aria-hidden="true" />
-        <h2 className="relative text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Your customer list is sitting there.</h2>
-        <p className="relative mx-auto mt-3 max-w-xl text-lg text-slate-300">Give Sam a season with it. <span className="text-amber-300">{OFFER}</span></p>
+        <h2 className="relative text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">Give Sam a season with your list.</h2>
+        <p className="relative mx-auto mt-3 max-w-xl text-lg text-slate-300">Every customer who went quiet, every estimate nobody answered. <span className="text-amber-300">{PRICE_LINE}</span></p>
         <div className="relative mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a href={LINKS.signup} className={`${BTN_PRIMARY} h-12 px-6 text-base`}>
             Get Sam <ArrowRight className="h-4 w-4" />
@@ -481,14 +488,14 @@ export function SiteFooter() {
               <img src="/xecute-mark.png" alt="" width={24} height={24} className="h-6 w-6 rounded-md" />
               Xecute
             </Link>
-            <p className="mt-3 max-w-xs text-sm text-slate-400">Run your service business from one text message. Sam is the salesperson inside it.</p>
+            <p className="mt-3 max-w-xs text-sm text-slate-400">Sam is a sales rep who texts your customers. Built by Xecute.</p>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-white">Product</h4>
+            <h4 className="text-sm font-semibold text-white">Sam</h4>
             <ul className="mt-3 space-y-2 text-sm text-slate-400">
-              <li><a href="#how" className="hover:text-emerald-400">How Sam works</a></li>
-              <li><a href={LINKS.features} className="hover:text-emerald-400">Xecute features</a></li>
-              <li><a href={LINKS.pricing} className="hover:text-emerald-400">Pricing</a></li>
+              <li><a href="#how" className="hover:text-emerald-400">How it works</a></li>
+              <li><a href="#proof" className="hover:text-emerald-400">Real conversations</a></li>
+              <li><a href="#pricing" className="hover:text-emerald-400">Pricing</a></li>
               <li><a href={LINKS.login} className="hover:text-emerald-400">Log in</a></li>
               <li><a href={LINKS.signup} className="hover:text-emerald-400">Sign up</a></li>
             </ul>

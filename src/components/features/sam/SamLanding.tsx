@@ -173,7 +173,7 @@ export function Hero() {
             </a>
           </div>
           <p className="mt-5 text-sm font-medium text-amber-300">{PRICE_LINE}</p>
-          <p className="mt-1 text-sm text-slate-400">Sam runs on Markate. Not on it yet? We set it up and move your customers over for you.</p>
+          <p className="mt-1 text-sm text-slate-400">Sam runs on Markate. Not on it? <a href={LINKS.signup + "#waitlist"} className="text-slate-200 underline decoration-slate-600 underline-offset-4 hover:text-white">Get on the list.</a></p>
         </div>
         <div className="motion-safe:animate-fade-in">
           <PhoneThread />
@@ -312,10 +312,10 @@ export function HowItWorks() {
             <p className="mt-2 leading-relaxed text-slate-300">Sam reads your customers and estimates straight from Markate, and sees every accept the moment it happens. That’s how he knows when to talk and when to stop.</p>
           </div>
           <div className={`${CARD} p-7`}>
-            <div className="text-xs font-semibold uppercase tracking-wide text-amber-300">Not on Markate yet?</div>
-            <div className="mt-2 text-2xl font-bold text-white">We move you.</div>
-            <p className="mt-2 leading-relaxed text-slate-300">Housecall Pro, ServiceTitan, Jobber, QuickBooks, a spreadsheet. We set up your Markate account and import your customers for you. Then Sam goes to work.</p>
-            <a href={LINKS.demo} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-300 hover:text-amber-200">Book the 15-minute call <ArrowRight className="h-4 w-4" /></a>
+            <div className="text-xs font-semibold uppercase tracking-wide text-amber-300">Not on Markate?</div>
+            <div className="mt-2 text-2xl font-bold text-white">Get on the list.</div>
+            <p className="mt-2 leading-relaxed text-slate-300">Housecall Pro, ServiceTitan, QuickBooks, a spreadsheet. Sam runs on Markate today. Leave your cell and the system you run, and you get a text the day Sam works with it. Markate itself imports a spreadsheet of customers in about twenty minutes, if you’d rather not wait.</p>
+            <a href={LINKS.signup + "#waitlist"} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-300 hover:text-amber-200">Put me on the list <ArrowRight className="h-4 w-4" /></a>
           </div>
         </div>
       </div>
@@ -393,7 +393,7 @@ export function Pricing() {
             <span className="text-5xl font-bold tracking-tight text-white tabular-nums">$297</span>
             <span className="text-base text-slate-400">a month</span>
           </div>
-          <p className="mt-3 text-sm font-medium text-amber-300">Runs on Markate. Not on it yet? We set it up and import your customers for you.</p>
+          <p className="mt-3 text-sm font-medium text-amber-300">Runs on Markate. Not on it? <a href={LINKS.signup + "#waitlist"} className="underline decoration-amber-300/50 underline-offset-4 hover:text-amber-200">Get on the list.</a></p>
           <ul className="mt-6 grid gap-2.5 text-sm text-slate-100 sm:grid-cols-2">
             {SAM_PLAN.map((f) => (
               <li key={f} className="flex gap-2.5"><Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />{f}</li>
@@ -431,7 +431,7 @@ const FAQ = [
   },
   {
     q: "Do I need Markate?",
-    a: "Yes. Sam reads your customers and estimates from Markate and sees every accept the moment it happens, which is how he knows when to keep talking and when to stop. Not on Markate yet? Book the call. We set up your account and import your customers for you, usually the same week.",
+    a: "Yes. Sam reads your customers and estimates from Markate and sees every accept the moment it happens, which is how he knows when to keep talking and when to stop. Not on Markate? Get on the list and you’ll hear the day Sam works with your system. Markate imports a spreadsheet of customers in about twenty minutes if you’d rather switch now.",
   },
   {
     q: "Does Sam schedule jobs?",

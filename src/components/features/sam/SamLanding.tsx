@@ -173,7 +173,7 @@ export function Hero() {
             </a>
           </div>
           <p className="mt-5 text-sm font-medium text-amber-300">{PRICE_LINE}</p>
-          <p className="mt-1 text-sm text-slate-400">Works with Markate, or with a customer list from anything else.</p>
+          <p className="mt-1 text-sm text-slate-400">Sam runs on Markate. Not on it yet? We set it up and move your customers over for you.</p>
         </div>
         <div className="motion-safe:animate-fade-in">
           <PhoneThread />
@@ -288,7 +288,7 @@ const STEPS = [
   },
   {
     title: "The yes lands in your lap",
-    body: "When a customer says yes, Sam texts you and the office: who, what, how much. On Markate the estimate gets accepted for you. Anywhere else, you book it in your own system.",
+    body: "When a customer says yes, the estimate is accepted in Markate and Sam texts you and the office: who, what, how much. You schedule it. Sam stops texting the moment it’s signed, because he saw it happen.",
   },
 ]
 
@@ -308,13 +308,14 @@ export function HowItWorks() {
         <div className="grid gap-4 md:grid-cols-2">
           <div className={`${CARD} p-7`}>
             <div className="text-xs font-semibold uppercase tracking-wide text-teal-300">On Markate?</div>
-            <div className="mt-2 text-2xl font-bold text-white">Connect it.</div>
-            <p className="mt-2 leading-relaxed text-slate-300">Sam reads your customers and estimates straight from Markate. Accepted estimates land back in Markate by themselves.</p>
+            <div className="mt-2 text-2xl font-bold text-white">Connect it. Ten minutes.</div>
+            <p className="mt-2 leading-relaxed text-slate-300">Sam reads your customers and estimates straight from Markate, and sees every accept the moment it happens. That’s how he knows when to talk and when to stop.</p>
           </div>
           <div className={`${CARD} p-7`}>
-            <div className="text-xs font-semibold uppercase tracking-wide text-amber-300">Not on Markate?</div>
-            <div className="mt-2 text-2xl font-bold text-white">Upload your list.</div>
-            <p className="mt-2 leading-relaxed text-slate-300">Export customers, invoices and open estimates from whatever you run today. Housecall Pro, ServiceTitan, Jobber, QuickBooks, a spreadsheet. Drop the files in. Sam reads the columns himself.</p>
+            <div className="text-xs font-semibold uppercase tracking-wide text-amber-300">Not on Markate yet?</div>
+            <div className="mt-2 text-2xl font-bold text-white">We move you.</div>
+            <p className="mt-2 leading-relaxed text-slate-300">Housecall Pro, ServiceTitan, Jobber, QuickBooks, a spreadsheet. We set up your Markate account and import your customers for you. Then Sam goes to work.</p>
+            <a href={LINKS.demo} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-300 hover:text-amber-200">Book the 15-minute call <ArrowRight className="h-4 w-4" /></a>
           </div>
         </div>
       </div>
@@ -392,7 +393,7 @@ export function Pricing() {
             <span className="text-5xl font-bold tracking-tight text-white tabular-nums">$297</span>
             <span className="text-base text-slate-400">a month</span>
           </div>
-          <p className="mt-3 text-sm font-medium text-amber-300">Markate connected, or your own customer list. Same Sam, same price.</p>
+          <p className="mt-3 text-sm font-medium text-amber-300">Runs on Markate. Not on it yet? We set it up and import your customers for you.</p>
           <ul className="mt-6 grid gap-2.5 text-sm text-slate-100 sm:grid-cols-2">
             {SAM_PLAN.map((f) => (
               <li key={f} className="flex gap-2.5"><Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />{f}</li>
@@ -430,7 +431,7 @@ const FAQ = [
   },
   {
     q: "Do I need Markate?",
-    a: "No. On Markate, Sam connects directly and accepted estimates land in your account by themselves. On Housecall Pro, ServiceTitan, Jobber, QuickBooks or a spreadsheet, you export your customer list and Sam works from that. New estimates you hand him one link at a time, and he follows up until they sign.",
+    a: "Yes. Sam reads your customers and estimates from Markate and sees every accept the moment it happens, which is how he knows when to keep talking and when to stop. Not on Markate yet? Book the call. We set up your account and import your customers for you, usually the same week.",
   },
   {
     q: "Does Sam schedule jobs?",
